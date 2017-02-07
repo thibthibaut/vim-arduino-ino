@@ -16,6 +16,10 @@ endif
 
 let s:helper_dir = expand("<sfile>:h")
 
+" Set default model
+let g:vim_arduino_ino_model = 'uno' 
+
+
 function! s:PrintStatus(result)
   if a:result == 0
     echohl Statement | echomsg "Succeeded." | echohl None
@@ -33,11 +37,19 @@ function! s:InvokeArduinoCli(deploy)
   let l:f_name = expand('%:p')
   execute "w"
   if a:deploy
-    echomsg "Compiling and deploying..." l:f_name
-    let l:result = system(g:vim_arduino_ino_cmd . " build && " . g:vim_arduino_ino_cmd . " upload")
+		echomsg "Compiling and deploying..." l:f_name
+		if exists('g:vim_arduino_ino_cpu')
+			let l:result = system(g:vim_arduino_ino_cmd . " build -m " . g:vim_arduino_ino_model . " --cpu " . g:vim_arduino_ino_cpu . " && " . g:vim_arduino_ino_cmd . " upload -m " . g:vim_arduino_ino_model . " --cpu " . g:vim_arduino_ino_cpu )
+		else
+			let l:result = system(g:vim_arduino_ino_cmd . " build -m " . g:vim_arduino_ino_model " && " . g:vim_arduino_ino_cmd . " upload -m " . g:vim_arduino_ino_model)
+		endif
   else
     echomsg "Compiling..." l:f_name
-    let l:result = system(g:vim_arduino_ino_cmd . " build")
+		if exists('g:vim_arduino_ino_cpu')
+			let l:result = system(g:vim_arduino_ino_cmd . " build -m " . g:vim_arduino_ino_model . " --cpu " . g:vim_arduino_ino_cpu)
+		else
+			let l:result = system(g:vim_arduino_ino_cmd . " build -m " . g:vim_arduino_ino_model)
+		endif
   endif
 
   echo l:result

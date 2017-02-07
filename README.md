@@ -50,6 +50,19 @@ To change the command used to build and deploy :
 let g:vim_arduino_ino_cmd = 'ano'
 ```
 
+To change target device : 
+
+```
+let g:vim_arduino_ino_model = 'mega' 
+```
+
+(To have a list of available devices type: `ano list-models`
+
+Sometimes a device require to tells ano the type of cpu (e.g. arduino mega). To set cpu :
+
+```
+let g:vim_arduino_ino_cpu = 'atmega2560' 
+```
 
 [ino-config]: http://inotool.org/quickstart#configuration-files
 [pathogen]: http://www.vim.org/scripts/script.php?script_id=2332
