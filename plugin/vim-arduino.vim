@@ -17,7 +17,9 @@ endif
 let s:helper_dir = expand("<sfile>:h")
 
 " Set default model
-let g:vim_arduino_ino_model = 'uno' 
+if !exists('g:vim_arduino_ino_model')
+	let g:vim_arduino_ino_model = 'uno' 
+endif
 
 
 function! s:PrintStatus(result)

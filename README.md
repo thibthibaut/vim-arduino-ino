@@ -56,7 +56,7 @@ To change target device :
 let g:vim_arduino_ino_model = 'mega' 
 ```
 
-(To have a list of available devices type: `ano list-models`
+(To have a list of available devices type: `ano list-models`)
 
 Sometimes a device require to tells ano the type of cpu (e.g. arduino mega). To set cpu :
 
